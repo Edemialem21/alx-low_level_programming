@@ -1,8 +1,8 @@
 #include <stdio.h>
 
-/*
- * main - print the text
- * it is a function which prints 
+/**
+ * main - Eprint the texts
+ *
  * Return: Always 0
  */
 int main(void)
