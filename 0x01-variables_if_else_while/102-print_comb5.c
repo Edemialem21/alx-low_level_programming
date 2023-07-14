@@ -9,41 +9,25 @@
 
 int main(void)
 {
-	int x = 48;
-	int y = 48;
-	int i = 48;
-	int j = 49;
+	int x;
+	int y;
 
-	while (x < 58)
+	for (x = 0; x <= 98; x++)
 	{
-		while (y < 57)
+		for (y = x + 1; y <= 99; y++)
 		{
-			j = 48;
-			i = x;
-			while (i < 58)
-			{
-				i = x;
-				while (j < 58)
-				{
-					putchar(x);
-					putchar(y);
-					putchar(32);
-					putchar(i);
-					putchar(j);
-					if (!((x == 57) && (y == 56) && (j == 57) && (i == 57)))
-					{
-						putchar(44);
-						putchar(32);
-					}
-					j++;
-				}
-				i++;
-				j = 48;
-			}
-			y++;
-			j = y + 1;
+			putchar((x / 10) + '0');
+			putchar((x % 10) + '0');
+			putchar(' ');
+			putchar((y / 10) + '0');
+			putchar((y % 10) + '0');
+		
+			if (x == 98 && y == 99)
+				continue;
+
+			putchar(44);
+			putchar(32);
 		}
-		x++;
 	}
 	putchar('\n');
 	return (0);
