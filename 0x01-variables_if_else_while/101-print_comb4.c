@@ -10,8 +10,8 @@
 int main(void)
 {
 	int x = 48;
-	int y = 49;
-	int z = 50;
+	int y;
+	int z;
 
 	while (x < 56)
 	{
@@ -23,7 +23,7 @@ int main(void)
 			{
 				putchar(x);
 				putchar(y);
-				putchar(x);
+				putchar(z);
 				if (!((x == 55) && (y == 56) && (z == 57)))
 				{
 					putchar(44);
