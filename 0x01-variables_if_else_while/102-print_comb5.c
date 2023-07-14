@@ -10,17 +10,16 @@
 int main(void)
 {
 	int x = 48;
-	int y, i, j;
+	int y = 48;
+	int i = 48;
+	int j = 49;
 
 	while (x < 58)
 	{
-		y = 48;
 		while (y < 57)
 		{
-			i = x;
 			while (i < 58)
 			{
-				j = y + 1;
 				while (j < 58)
 				{
 					putchar(x);
@@ -36,10 +35,15 @@ int main(void)
 					j++;
 				}
 				i++;
+				j = 48;
 			}
 			y++;
+			i = x;
+			j = y + 1;
 		}
 		x++;
+		j = 48;
+		i = x;
 	}
 	putchar('\n');
 	return (0);
