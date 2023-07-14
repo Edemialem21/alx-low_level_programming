@@ -29,7 +29,10 @@ int main(void)
 					putchar(i);
 					putchar(j);
 					if (!((x == 57) && (y == 56) && (j == 57) && (i == 57)))
+					{
 						putchar(44);
+						putchar(32);
+					}
 					j++;
 				}
 				i++;
