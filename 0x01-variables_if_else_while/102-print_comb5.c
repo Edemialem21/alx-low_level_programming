@@ -9,32 +9,35 @@
 
 int main(void)
 {
-        int x = 48;
-        int y;
-        int z;
+	int x = 48;
+	int y, i, j;
 
-        while (x < 56)
-        {
-                y = x + 1;
-                while (y < 57)
-                {
-                        z = x + 2;
-                        while (z < 58)
-                        {
-                                putchar(x);
-                                putchar(y);
-                                putchar(z);
-                                if (!((x == 55) && (y == 56) && (z == 57)))
-                                {
-                                        putchar(44);
-                                        putchar(32);
-                                }
-                                z++;
-                        }
-                        y++;
-                }
-                x++;
-        }
-        putchar('\n');
-        return (0);
+	while (x < 58)
+	{
+		y = 48;
+		while (y < 57)
+		{
+			i = x;
+			while (i < 58)
+			{
+				j = y + 1;
+				while (j < 58)
+				{
+					putchar(x);
+					putchar(y);
+					putchar(32);
+					putchar(i);
+					putchar(j);
+					if (!((x == 57) && (y == 56) && (j == 57) && (i == 57)))
+						putchar(44);
+					j++;
+				}
+				i++;
+			}
+			y++;
+		}
+		x++;
+	}
+	putchar('\n');
+	return (0);
 }
