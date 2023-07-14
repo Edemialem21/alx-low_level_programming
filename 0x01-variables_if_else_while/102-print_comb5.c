@@ -18,8 +18,11 @@ int main(void)
 	{
 		while (y < 57)
 		{
+			j = 48;
+			i = x;
 			while (i < 58)
 			{
+				i = x;
 				while (j < 58)
 				{
 					putchar(x);
@@ -38,12 +41,9 @@ int main(void)
 				j = 48;
 			}
 			y++;
-			i = x;
 			j = y + 1;
 		}
 		x++;
-		j = 48;
-		i = x;
 	}
 	putchar('\n');
 	return (0);
