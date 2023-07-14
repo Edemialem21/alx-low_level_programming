@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 /**
- * main - print hexa decimal 
+ * main - print hexa decimal
  *
  * Return: return 0 success
  */
