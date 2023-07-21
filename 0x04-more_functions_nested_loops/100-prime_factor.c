@@ -6,19 +6,24 @@
  */
 int main(void)
 {
-	long int factmax, i;
+	long int i;
 	long int num = 612852475143;
 
-	for (i = 2; num > 1; i = i +2)
+	while (i < (num / 2))
 	{
-		while (num % i == 0)
+		if ((num % 2) == 0)
 		{
-			num /=i;
-			factmax = i;
+			num /= 2;
+			continue;
 		}
-		if (i == 2)
-			i = 3;
+
+		for (i = 3; i < (num / 2); i += 2)
+		{
+			if ((num % i) == 0)
+				num /= i;
+		}
 	}
-	printf("%ld'\n'", factmax);
+
+	printf("%ld\n", num);
 	return (0);
 }
