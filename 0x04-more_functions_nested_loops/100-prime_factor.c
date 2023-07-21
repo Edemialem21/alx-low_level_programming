@@ -6,8 +6,7 @@
  */
 int main(void)
 {
-	long int i;
-	long int num = 612852475143;
+	long num = 612852475143, i;
 
 	while (i < (num / 2))
 	{
