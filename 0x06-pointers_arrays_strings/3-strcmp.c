@@ -10,14 +10,14 @@ int _strcmp(char *s1, char *s2)
 	int a = 0;
 	int b = 0;
 
-	while (s1[a] != '\0')
+	while (s1[a] != '\0' && s2[a] != '\0')
+	{
+		b = s1[a] - s2[a];
+		if (b < 0)
+			return (-15);
+		if (b > 0)
+			return (15);
 		a++;
-	while (s2[b] != '\0')
-		b++;
-	if (a < b)
-		return (-15);
-	else if (a > b)
-		return (15);
-	else
+	}
 		return (0);
 }
