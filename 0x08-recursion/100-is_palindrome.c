@@ -16,6 +16,22 @@ int is_palin(char *s, int i)
 }
 
 /**
+ * _strlen_recursion - calculates the string length
+ * @s: the string pointer to be length evaluated
+ * Return: the length of the string
+ */
+int _strlen_recursion(char *s)
+{
+	int i = 0;
+
+	if (!*s)
+		return (0);
+	i++;
+	s++;
+	return (i + _strlen_recursion(s));
+}
+
+/**
  * is_palindrome - checks the string is a palindrome or not.
  * @s: input char
  * Return: 1 if a string is a palindrome and 0 if not.
@@ -23,10 +39,9 @@ int is_palin(char *s, int i)
 
 int is_palindrome(char *s)
 {
-	int i = 0;
+	int i;
 
-	while (*(s + i) != '\0')
-		i++;
+	i = _strlen_recursion(s);
 	if (i <= 1)
 		return (1);
 	return (is_palin(s, i));
