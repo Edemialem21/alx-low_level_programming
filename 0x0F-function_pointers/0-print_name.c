@@ -6,6 +6,7 @@
  * @f: functions pointer to
  * Return: always success 0
  */
-void print_name(char *name, void (*f)(char *)) {
-    f(name);
+void print_name(char *name, void (*f)(char *))
+{
+	f(name);
 }
