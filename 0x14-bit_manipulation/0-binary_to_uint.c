@@ -1,4 +1,5 @@
 #include <string.h>
+#include "main.h"
 /**
  * binary_to_uint - binary to integer conversion
  * @b: pointer to the binarys
