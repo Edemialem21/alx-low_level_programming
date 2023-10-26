@@ -1,4 +1,6 @@
 #include "main.h"
+#include <stddef.h>
+
 /**
  * binary_to_uint - binary to integer conversion
  * @b: pointer to the binarys
