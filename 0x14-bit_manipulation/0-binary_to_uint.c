@@ -1,10 +1,9 @@
 #include <string.h>
-/*
+/**
  * binary_to_uint - binary to integer conversion
  * @b: pointer to the binarys
  * Return: an integer or null
- */ 
-
+ */
 unsigned int binary_to_uint(const char *b)
 {
 	unsigned int result = 0;
