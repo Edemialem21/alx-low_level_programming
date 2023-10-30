@@ -1,5 +1,5 @@
 #include "main.h"
-#include <stdlib.h>
+
 /**
  * read_textfile - the function that read text file
  * @filename: a pointer to memorry
