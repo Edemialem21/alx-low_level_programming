@@ -5,7 +5,9 @@
  * Return: returns the letter for success
  */
 void print_error(const char *message)
+{
 	dprintf(STDERR_FILENO, "Error: %s\n", message);
+}
 /**
  * main - the function that print error
  * @argc: a pointer to memorry
