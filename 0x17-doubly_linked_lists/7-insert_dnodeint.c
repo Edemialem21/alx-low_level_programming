@@ -6,8 +6,7 @@
  * @idx: the postion where in the new node id inderted
  * Return: it returns the address of the new added node
  */
-dlistint_t *insert_dnodeint_at_index(
-/ dlistint_t **head, unsigned int idx, int n)
+dlistint_t *insert_dnodeint_at_index(dlistint_t **head, unsigned int idx, int n)
 {
 	dlistint_t *new_node = NULL;
 	dlistint_t *temp = *head;
