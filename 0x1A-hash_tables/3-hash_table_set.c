@@ -15,7 +15,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	int index = 0;
 	hash_node_t *new_node = NULL, *mover;
 
-if (ht == NULL || key == NULL || value == NULL || strcmp(key, "") == 0)
+	if (ht == NULL || key == NULL || value == NULL || strcmp(key, "") == 0)
 		return (0);
 	value_duplicate = duplicate_string(value);
 	key_duplicate = duplicate_string(key);
