@@ -1,6 +1,7 @@
 #include "hash_tables.h"
 
-
+#define SUCCESS 1
+#define FAILURE 0
 /**
  * shash_table_create - Creates a sorted hash table.
  *
