@@ -1,112 +1,60 @@
 #include "hash_tables.h"
+#include <string.h>
+
+#define SUCCESS  1
+#define FAILURE  0
 
 /**
- * hash_table_set - function to add an element to the hash table
- * @ht: hash table to add key/value pair to
- * @key: string used as key to find desired value in hash table
- * @value: string stored as value with associated key
+ * hash_table_set - Adds an element to the hash table. In case of collision,
+ * it will add an element at the beginning of  the list.
  *
- * Return: 1 if successful, 0 if failed
+ * @ht: The hash table you want to add or update the key/value to
+ * @key: The key, and cannot be empty string.
+ * @value: The value associated with the key, and can be empty string.
+ *
+ * Return: 1 if it succeeded, 0 otherwise
+ *
  */
 
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	char *value_duplicate, *key_duplicate;
-	int index = 0;
-	hash_node_t *new_node = NULL, *mover;
+	hash_node_t *new_node, *traverse;
+	unsigned long int i;
+	char *copy;
 
-	if (ht == NULL || key == NULL || value == NULL || strcmp(key, "") == 0)
-		return (0);
-	value_duplicate = duplicate_string(value);
-	key_duplicate = duplicate_string(key);
-	if (value_duplicate == NULL || key_duplicate == NULL)
+	if (ht == NULL || key == NULL || *key == 0 || value == NULL)
+		return (FAILURE);
+
+	i =  key_index((const unsigned char *) key, ht->size);
+	traverse = ht->array[i];
+
+	while (traverse)
 	{
-		free_dups(&new_node, &key_duplicate, &value_duplicate);
-		return (0);
+		if (strcmp(traverse->key, key) == 0)
+			break;
+		traverse = traverse->next;
 	}
-	new_node = initialize_new_node(key_duplicate, value_duplicate);
-	if (new_node == NULL)
+	if (traverse == NULL)
 	{
-		free_dups(&new_node, &key_duplicate, &value_duplicate);
-		return (0);
+		new_node = malloc(sizeof(hash_node_t));
+		if (new_node == NULL)
+			return (FAILURE);
+		new_node->key = strdup(key);
+		if (new_node->key == NULL)
+			return (FAILURE);
+		new_node->value = strdup(value);
+		if (new_node->value == NULL)
+			return (FAILURE);
+		new_node->next = ht->array[i];
+		ht->array[i] = new_node;
 	}
-	index = (hash_djb2((unsigned char *)key) % ht->size);
-	if (ht->array[index] == NULL)
+	else
 	{
-		ht->array[index] = new_node;
-		return (1);
+		copy = strdup(value);
+		if (copy == NULL)
+			return (FAILURE);
+		free(traverse->value);
+		traverse->value = copy;
 	}
-	mover = ht->array[index];
-	while (mover != NULL)
-	{
-		if (strcmp(mover->key, key) == 0)
-		{
-			free_dups(&new_node, &key_duplicate, &(mover->value));
-			mover->value = value_duplicate;
-			return (1);
-		}
-		mover = mover->next;
-	}
-	new_node->next = ht->array[index];
-	ht->array[index] = new_node;
-	return (1);
-}
-
-/**
- * duplicate_string - function to duplicate key/value string
- * @string: input key/value to duplicate
- * Return: duplicated string or NULL if failed
- */
-
-char *duplicate_string(const char *string)
-{
-	int i = 0;
-	char *duplicate;
-
-	duplicate = malloc(sizeof(char) * (strlen(string) + 1));
-	if (duplicate == NULL)
-		return (NULL);
-	for (i = 0; string[i]; i++)
-	{
-		duplicate[i] = string[i];
-	}
-	duplicate[i] = '\0';
-	return (duplicate);
-}
-
-/**
- * initialize_new_node - function to create and initialize new_node
- * @key_duplicate: key string to set new_node->key to
- * @value_duplicate: value string to set new_node->value to
- * Return: initialized new_node, or NULL if failed
- */
-
-hash_node_t *initialize_new_node(char *key_duplicate, char *value_duplicate)
-{
-	hash_node_t *new_node;
-
-	new_node = malloc(sizeof(hash_node_t));
-	if (new_node == NULL)
-		return (NULL);
-	new_node->key = key_duplicate;
-	new_node->value = value_duplicate;
-	new_node->next = NULL;
-	return (new_node);
-}
-
-/**
- * free_dups - function to free duplicated string or extra node
- * @new_node: pointer to new node created
- * freed if node with key value already exists
- * @key: pointer to duplicated key string
- * freed if node with key exists or before exit failure
- * @value: pointer to duplicated value string
- * freed before exit failure or if value being replaced
- */
-
-void free_dups(hash_node_t **new_node, char **key, char **value)
-{
-	free(*new_node);
-	free(*key);
-	free(*value);
+	return (SUCCESS);
 }
